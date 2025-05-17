@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from lista_filmes import resultado_filmes
 
 app = Flask(__name__)
 
@@ -26,5 +27,11 @@ def diario():
                 'nota': nota
             })
     return render_template('sobre.html', registros=registros)
+
+
+@app.route('/filmes/<propriedade>')
+def lista_filmes(propriedade):
+    return render_template('filmes.html', filmes=resultado_filmes(propriedade))
+
 
 app.run(debug=True)
